@@ -36,10 +36,10 @@ import org.cloudburstmc.protocol.bedrock.codec.v859.Bedrock_v859;
 import org.cloudburstmc.protocol.bedrock.codec.v860.Bedrock_v860;
 import org.cloudburstmc.protocol.bedrock.codec.v898.Bedrock_v898;
 
-// Legacy codecs (must exist in your forked protocol library)
-import org.cloudburstmc.protocol.bedrock.codec.v407.Bedrock_v407; // 1.16.201
-import org.cloudburstmc.protocol.bedrock.codec.v431.Bedrock_v431; // 1.17.x
-import org.cloudburstmc.protocol.bedrock.codec.v448.Bedrock_v448; // 1.18.x
+// Legacy codecs in your fork
+import org.geysermc.geyser.network.legacy.Bedrock_v407; // 1.16.201
+import org.geysermc.geyser.network.legacy.Bedrock_v431; // 1.17.x
+import org.geysermc.geyser.network.legacy.Bedrock_v448; // 1.18.x
 
 import org.geysermc.geyser.api.util.MinecraftVersion;
 import org.geysermc.geyser.impl.MinecraftVersionImpl;
@@ -81,7 +81,7 @@ public final class GameProtocol {
         register(Bedrock_v860.CODEC);
         register(Bedrock_v898.CODEC);
 
-        // set defaults
+        // set defaults to latest Bedrock
         MinecraftVersion latestBedrock = SUPPORTED_BEDROCK_VERSIONS.get(SUPPORTED_BEDROCK_VERSIONS.size() - 1);
         DEFAULT_BEDROCK_VERSION = latestBedrock.versionString();
         DEFAULT_BEDROCK_PROTOCOL = latestBedrock.protocolVersion();
@@ -120,7 +120,7 @@ public final class GameProtocol {
         return session.protocolVersion() <= Bedrock_v407.CODEC.getProtocolVersion();
     }
 
-    // Java edition helpers (unchanged)
+    // Java edition helpers
     public static List<String> getJavaVersions() {
         return List.of(DEFAULT_JAVA_CODEC.getMinecraftVersion());
     }
